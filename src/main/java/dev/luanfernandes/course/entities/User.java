@@ -1,5 +1,6 @@
 package dev.luanfernandes.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -19,9 +20,11 @@ public class User implements Serializable {
     private Long id;
     private String name;
     private String email;
-    private String phone;
-    private String password;
 
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER, pattern = "^([0-9]{3}\\.?){3}-?[0-9]{2}$")
+    private String phone;
+
+    private String password;
 
     @JsonIgnore
     @OneToMany(mappedBy = "client")
